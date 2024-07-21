@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Assignment</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="assignment2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="assignment2_files/libs/quarto-html/quarto.js"></script>
+<script src="assignment2_files/libs/quarto-html/popper.min.js"></script>
+<script src="assignment2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="assignment2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="assignment2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="assignment2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="assignment2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="assignment2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="assignment2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'zoo' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'zoo'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    as.Date, as.Date.numeric</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>unicef_indicator_2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"D:/users/unicef_indicator_2.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>unicef_metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"D:/users/unicef_metadata.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(unicef_indicator_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1114 obs. of  14 variables:
+ $ country                                                    : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+ $ alpha_2_code                                               : chr  "AF" "AF" "AF" "AF" ...
+ $ alpha_3_code                                               : chr  "AFG" "AFG" "AFG" "AFG" ...
+ $ numeric_code                                               : int  4 4 4 4 4 4 4 4 4 8 ...
+ $ indicator                                                  : chr  "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ ...
+ $ time_period                                                : int  2011 2015 2018 2011 2015 2018 2011 2015 2018 2000 ...
+ $ obs_value                                                  : num  46.3 39.5 52 48.7 41.7 44.7 47.5 40.7 48.5 62 ...
+ $ sex                                                        : chr  "Female" "Female" "Female" "Male" ...
+ $ unit_multiplier                                            : chr  "Units" "Units" "Units" "Units" ...
+ $ unit_of_measure                                            : chr  "%" "%" "%" "%" ...
+ $ observation_status                                         : chr  "Reported" "Reported" "Reported" "Reported" ...
+ $ observation_confidentaility                                : chr  "Free" "Free" "Free" "Free" ...
+ $ time_period_activity_related_to_when_the_data_are_collected: chr  "End of fieldwork" "End of fieldwork" "End of fieldwork" "End of fieldwork" ...
+ $ current_age                                                : chr  "Under 5 years old" "Under 5 years old" "Under 5 years old" "Under 5 years old" ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(unicef_metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   13986 obs. of  12 variables:
+ $ country                                : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+ $ alpha_2_code                           : chr  "AF" "AF" "AF" "AF" ...
+ $ alpha_3_code                           : chr  "AFG" "AFG" "AFG" "AFG" ...
+ $ numeric_code                           : int  4 4 4 4 4 4 4 4 4 4 ...
+ $ iso3c                                  : chr  "AFG" "AFG" "AFG" "AFG" ...
+ $ year                                   : int  1960 1961 1962 1963 1964 1965 1966 1967 1968 1969 ...
+ $ Population..total                      : int  8622466 8790140 8969047 9157465 9355514 9565147 9783147 10010030 10247780 10494489 ...
+ $ GDP.per.capita..constant.2015.US..     : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ GNI..current.US..                      : num  5.49e+08 5.60e+08 5.58e+08 7.67e+08 8.16e+08 ...
+ $ Inflation..consumer.prices..annual...  : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ Life.expectancy.at.birth..total..years.: num  32.5 33.1 33.5 34 34.5 ...
+ $ Military.expenditure....of.GDP.        : num  NA NA NA NA NA NA NA NA NA NA ...</code></pre>
+</div>
+</div>
+<ul>
+<li>The provided data includes two data frames such as “unicef_indicator_2” with 14 variables tracking indicators such as diarrhoea treatment rates by country and “unicef_metadata” with 12 variables describing country-level socio-economic metrics such as population, GDP, and life expectancy over time from 1960 onwards.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unicef_indicator_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   country          alpha_2_code       alpha_3_code        numeric_code  
+ Length:1114        Length:1114        Length:1114        Min.   :  4.0  
+ Class :character   Class :character   Class :character   1st Qu.:214.0  
+ Mode  :character   Mode  :character   Mode  :character   Median :426.0  
+                                                          Mean   :432.4  
+                                                          3rd Qu.:678.0  
+                                                          Max.   :894.0  
+  indicator          time_period     obs_value         sex           
+ Length:1114        Min.   :2000   Min.   : 6.40   Length:1114       
+ Class :character   1st Qu.:2006   1st Qu.:35.60   Class :character  
+ Mode  :character   Median :2010   Median :46.00   Mode  :character  
+                    Mean   :2010   Mean   :45.25                     
+                    3rd Qu.:2014   3rd Qu.:55.30                     
+                    Max.   :2021   Max.   :84.90                     
+ unit_multiplier    unit_of_measure    observation_status
+ Length:1114        Length:1114        Length:1114       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+ observation_confidentaility
+ Length:1114                
+ Class :character           
+ Mode  :character           
+                            
+                            
+                            
+ time_period_activity_related_to_when_the_data_are_collected current_age       
+ Length:1114                                                 Length:1114       
+ Class :character                                            Class :character  
+ Mode  :character                                            Mode  :character  
+                                                                               
+                                                                               
+                                                                               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unicef_metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   country          alpha_2_code       alpha_3_code        numeric_code  
+ Length:13986       Length:13986       Length:13986       Min.   :  4.0  
+ Class :character   Class :character   Class :character   1st Qu.:212.0  
+ Mode  :character   Mode  :character   Mode  :character   Median :427.0  
+                                                          Mean   :431.1  
+                                                          3rd Qu.:659.0  
+                                                          Max.   :894.0  
+                                                                         
+    iso3c                year      Population..total  
+ Length:13986       Min.   :1960   Min.   :4.582e+03  
+ Class :character   1st Qu.:1975   1st Qu.:5.583e+05  
+ Mode  :character   Median :1991   Median :4.598e+06  
+                    Mean   :1991   Mean   :2.581e+07  
+                    3rd Qu.:2007   3rd Qu.:1.558e+07  
+                    Max.   :2022   Max.   :1.417e+09  
+                                   NA's   :30         
+ GDP.per.capita..constant.2015.US.. GNI..current.US..  
+ Min.   :   122.9                   Min.   :9.123e+06  
+ 1st Qu.:  1379.5                   1st Qu.:1.580e+09  
+ Median :  3784.7                   Median :9.148e+09  
+ Mean   : 11863.8                   Mean   :2.049e+11  
+ 3rd Qu.: 14428.2                   3rd Qu.:5.969e+10  
+ Max.   :228667.9                   Max.   :2.598e+13  
+ NA's   :3460                       NA's   :3879       
+ Inflation..consumer.prices..annual... Life.expectancy.at.birth..total..years.
+ Min.   :  -17.640                     Min.   :11.99                          
+ 1st Qu.:    2.119                     1st Qu.:57.52                          
+ Median :    4.847                     Median :67.38                          
+ Mean   :   24.412                     Mean   :64.57                          
+ 3rd Qu.:   10.233                     3rd Qu.:72.79                          
+ Max.   :23773.132                     Max.   :85.50                          
+ NA's   :4982                          NA's   :781                            
+ Military.expenditure....of.GDP.
+ Min.   :  0.000                
+ 1st Qu.:  1.208                
+ Median :  1.910                
+ Mean   :  2.724                
+ 3rd Qu.:  3.187                
+ Max.   :117.350                
+ NA's   :6037                   </code></pre>
+</div>
+</div>
+<ul>
+<li>The above result shows desctiptive statistics for variables such as country, indicator values, and observation details. The next result of “unicef_metadata” shows descriptive summary such as population, GDP, and life expectancy per country, GDP and inflation data.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>unicef_metadata_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(unicef_metadata)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>unicef_metadata_clean <span class="ot">&lt;-</span> <span class="fu">na.aggregate</span>(unicef_metadata_clean, <span class="at">FUN =</span> mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA
+
+Warning in mean.default(x[!is.na(x)]): argument is not numeric or logical:
+returning NA</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(unicef_metadata_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   6215 obs. of  12 variables:
+ $ country                                : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+ $ alpha_2_code                           : chr  "AF" "AF" "AF" "AF" ...
+ $ alpha_3_code                           : chr  "AFG" "AFG" "AFG" "AFG" ...
+ $ numeric_code                           : chr  "  4" "  4" "  4" "  4" ...
+ $ iso3c                                  : chr  "AFG" "AFG" "AFG" "AFG" ...
+ $ year                                   : chr  "2008" "2009" "2010" "2011" ...
+ $ Population..total                      : chr  "  26427199" "  27385307" "  28189672" "  29249157" ...
+ $ GDP.per.capita..constant.2015.US..     : chr  "   418.5232" "   490.2728" "   544.6893" "   527.1973" ...
+ $ GNI..current.US..                      : chr  "1.010720e+10" "1.237834e+10" "1.588578e+10" "1.778151e+10" ...
+ $ Inflation..consumer.prices..annual...  : chr  " 2.641866e+01" "-6.811161e+00" " 2.178538e+00" " 1.180419e+01" ...
+ $ Life.expectancy.at.birth..total..years.: chr  "59.85200" "60.36400" "60.85100" "61.41900" ...
+ $ Military.expenditure....of.GDP.        : chr  " 2.33554570" " 2.08741255" " 1.94583569" " 1.82134545" ...
+ - attr(*, "na.action")= 'omit' Named int [1:7771] 1 2 3 4 5 6 7 8 9 10 ...
+  ..- attr(*, "names")= chr [1:7771] "1" "2" "3" "4" ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(unicef_metadata_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   country          alpha_2_code       alpha_3_code       numeric_code      
+ Length:6215        Length:6215        Length:6215        Length:6215       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    iso3c               year           Population..total 
+ Length:6215        Length:6215        Length:6215       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+ GDP.per.capita..constant.2015.US.. GNI..current.US.. 
+ Length:6215                        Length:6215       
+ Class :character                   Class :character  
+ Mode  :character                   Mode  :character  
+ Inflation..consumer.prices..annual... Life.expectancy.at.birth..total..years.
+ Length:6215                           Length:6215                            
+ Class :character                      Class :character                       
+ Mode  :character                      Mode  :character                       
+ Military.expenditure....of.GDP.
+ Length:6215                    
+ Class :character               
+ Mode  :character               </code></pre>
+</div>
+</div>
+<ul>
+<li>The “unicef_metadata_clean” data frame comprises of 6215 observations and 12 variables. it includes country details, numeric codes, and indicators such as population, GDP per capita, GNI, inflation rate, life expectancy, and military expenditure as percentages of GDP.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifing common columns between the datasets</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>common_cols <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="fu">names</span>(unicef_metadata_clean), <span class="fu">names</span>(unicef_indicator_2))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging the datasets based on common columns</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(unicef_metadata_clean, unicef_indicator_2, <span class="at">by =</span> common_cols)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the structure of the merged dataset</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(merged_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   32246 obs. of  22 variables:
+ $ country                                                    : chr  "Belarus" "Belarus" "Belarus" "Belarus" ...
+ $ alpha_2_code                                               : chr  "BY" "BY" "BY" "BY" ...
+ $ alpha_3_code                                               : chr  "BLR" "BLR" "BLR" "BLR" ...
+ $ numeric_code                                               : chr  "112" "112" "112" "112" ...
+ $ iso3c                                                      : chr  "BLR" "BLR" "BLR" "BLR" ...
+ $ year                                                       : chr  "2021" "2021" "2021" "2021" ...
+ $ Population..total                                          : chr  "   9302585" "   9302585" "   9302585" "   9302585" ...
+ $ GDP.per.capita..constant.2015.US..                         : chr  "  6457.7513" "  6457.7513" "  6457.7513" "  6457.7513" ...
+ $ GNI..current.US..                                          : chr  "6.711594e+10" "6.711594e+10" "6.711594e+10" "6.711594e+10" ...
+ $ Inflation..consumer.prices..annual...                      : chr  " 9.460284e+00" " 9.460284e+00" " 9.460284e+00" " 9.460284e+00" ...
+ $ Life.expectancy.at.birth..total..years.                    : chr  "72.37068" "72.37068" "72.37068" "72.37068" ...
+ $ Military.expenditure....of.GDP.                            : chr  " 1.11835004" " 1.11835004" " 1.11835004" " 1.11835004" ...
+ $ indicator                                                  : chr  "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ "Diarrhoea treatment - percentage of children (under age 5) with diarrhoea who received ORT (oral rehydration sa"| __truncated__ ...
+ $ time_period                                                : int  2012 2019 2005 2005 2012 2019 2019 2012 2005 2012 ...
+ $ obs_value                                                  : num  51.1 72.8 66 44 61.2 64.6 68.2 73.7 54 51.1 ...
+ $ sex                                                        : chr  "Female" "Female" "Male" "Female" ...
+ $ unit_multiplier                                            : chr  "Units" "Units" "Units" "Units" ...
+ $ unit_of_measure                                            : chr  "%" "%" "%" "%" ...
+ $ observation_status                                         : chr  "Reported" "Reported" "Reported" "Reported" ...
+ $ observation_confidentaility                                : chr  "Free" "Free" "Free" "Free" ...
+ $ time_period_activity_related_to_when_the_data_are_collected: chr  "End of fieldwork" "End of fieldwork" "End of fieldwork" "End of fieldwork" ...
+ $ current_age                                                : chr  "Under 5 years old" "Under 5 years old" "Under 5 years old" "Under 5 years old" ...</code></pre>
+</div>
+</div>
+<ul>
+<li>The merged dataset comprises of 32246 observations and 22 variables. It combines indicators from “unicef_metadata_clean” such as population, GDP, and life expectancy with indicators from “unicef_indicator_2” such as diarrhoea treatment rates, based on common columns such as country, year, and alpha codes.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a bar chart for life expectancy with data levels</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>life_expectancy_chart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Life.expectancy.at.birth..total..years.))) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life Expectancy at Birth"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Life Expectancy (Years)"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the bar chart</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(life_expectancy_chart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>The above image shows the bar plot of life expectancy at birth. It has been seen that the highest life expectancy at 47 years</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Scatterplot with a linear regression line</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Computing linear regression</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Life.expectancy.at.birth..total..years. <span class="sc">~</span> obs_value, <span class="at">data =</span> merged_data)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting slope and intercept from the linear regression model</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">&lt;-</span> lm_model<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> lm_model<span class="sc">$</span>coefficients[<span class="dv">1</span>]</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a scatterplot with a linear regression line using only obs_value</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>scatterplot_obs_value <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> obs_value, <span class="at">y =</span> Life.expectancy.at.birth..total..years.)) <span class="sc">+</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Scatterplot</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> intercept, <span class="at">slope =</span> slope, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span>  <span class="co"># Linear regression line</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatterplot with Linear Regression (obs_value)"</span>,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Observation Value"</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life Expectancy (Years)"</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the scatterplot</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(scatterplot_obs_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute linear regression</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Life.expectancy.at.birth..total..years. <span class="sc">~</span> obs_value, <span class="at">data =</span> merged_data)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary of the linear regression model</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Life.expectancy.at.birth..total..years. ~ obs_value, 
+    data = merged_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-34.097  -6.252  -0.082   6.623  23.334 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 50.410819   0.151945  331.77   &lt;2e-16 ***
+obs_value    0.204373   0.003292   62.09   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.625 on 32244 degrees of freedom
+Multiple R-squared:  0.1068,    Adjusted R-squared:  0.1068 
+F-statistic:  3855 on 1 and 32244 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ul>
+<li>The linear regression model predicts life expectancy at birth based on diarrhoea treatment rates. The model shows a significant positive relationship (p &lt; 0.001) between diarrhoea treatment rates and life expectancy, with an intercept of 50.41 years and a slope of 0.2044 and 10.68% of the variance.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span>time_period <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(merged_data<span class="sc">$</span>time_period, <span class="at">format =</span> <span class="st">"%Y"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a time-series chart</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>time_series_chart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> time_period, <span class="at">y =</span> obs_value, <span class="at">label =</span> <span class="fu">round</span>(obs_value, <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Add data values</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time Series of obs_value"</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Time Period"</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Observation Value"</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the time-series chart</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(time_series_chart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>The above image shows the time-series plot based on observation value and time period.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'maps' was built under R version 4.3.3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"maps"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'maps' is in use and will not be installed</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting GDP.per.capita..constant.2015.US.. to numeric</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>merged_data<span class="sc">$</span>GDP.per.capita..constant.<span class="fl">2015.</span>US.. <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(merged_data<span class="sc">$</span>GDP.per.capita..constant.<span class="fl">2015.</span>US..)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering merged_data for countries with GDP per capita greater than 8000</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>high_gdp_countries <span class="ot">&lt;-</span> merged_data[merged_data<span class="sc">$</span>GDP.per.capita..constant.<span class="fl">2015.</span>US. <span class="sc">&gt;</span> <span class="dv">8000</span>, ]</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieving world map data</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering world map data for matched countries</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>matched_map_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(world_map, region <span class="sc">%in%</span> high_gdp_countries<span class="sc">$</span>country)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting GDP per capita to a factor</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>matched_map_data<span class="sc">$</span>GDP.per.capita.factor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(matched_map_data<span class="sc">$</span>region)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a world map chart</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>world_map_chart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(matched_map_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> GDP.per.capita.factor)) <span class="sc">+</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">"GDP per capita"</span>) <span class="sc">+</span></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"World Map with GDP per Capita &gt; 8000"</span>) <span class="sc">+</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying the world map chart</span></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(world_map_chart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="assignment2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>The above image shows the world map indicating countries with GDP greater than 8000. It has been seen that Dominician republic is highest and turkey comes in lowest in terms of GDP</li>
+</ul>
+<pre><code></code></pre>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
